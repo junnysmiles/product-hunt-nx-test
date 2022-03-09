@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "components": "libs/components",
     "product-hunt-test": "apps/product-hunt-test",
     "product-hunt-test-e2e": "apps/product-hunt-test-e2e"
   }

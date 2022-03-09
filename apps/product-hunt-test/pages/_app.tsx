@@ -1,18 +1,22 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import './styles.css';
+// apps/product-hunt/pages/_app.tsx
 
-function CustomApp({ Component, pageProps }: AppProps) {
+import { ClientContext } from "graphql-hooks";
+import { AppProps } from "next/app";
+import Head from "next/head";
+import React from "react";
+import { useGraphQLClient } from "../lib/graphql-client";
+
+const NextApp = ({ Component, pageProps }: AppProps) => {
+  const graphQLClient = useGraphQLClient(pageProps.initialGraphQLState);
+
   return (
-    <>
+    <ClientContext.Provider value={graphQLClient}>
       <Head>
         <title>Welcome to product-hunt-test!</title>
       </Head>
-      <main className="app">
-        <Component {...pageProps} />
-      </main>
-    </>
+      <Component {...pageProps} />
+    </ClientContext.Provider>
   );
-}
+};
 
-export default CustomApp;
+export default NextApp;
